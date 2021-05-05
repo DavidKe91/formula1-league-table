@@ -1,0 +1,11 @@
+{
+    "/api/*": {
+        "target": "http://ergast.com",
+        "secure": false,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/api": ""
+        },
+        "changeOrigin": true
+    }
+}
