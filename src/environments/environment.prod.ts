@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
-};
+    production: true,
+    API_STEM: 'https://ergast.com/api/f1/'
+  };

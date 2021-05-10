@@ -13,6 +13,11 @@ table thead {
 background-color: #424242 !important;
 }
 
+.card-container {
+    margin-bottom: 16px;
+}
+
 .mat-cell.cdk-cell {
     color: #424242;
+    border-bottom: 1px solid #f2f2f2;
 }

@@ -14,6 +14,11 @@ export class Driver {
     nationality: string;
 }
 
+export class Result {
+    raceName: number;
+    round: number;
+}
+
 export class MRRepsonse {
     MRData: any;
   }

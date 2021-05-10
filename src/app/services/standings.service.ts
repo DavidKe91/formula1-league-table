@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Constructor, Driver } from '../model/models';
+import { map , filter} from 'rxjs/operators';
+import { Constructor, Driver, Result } from '../model/models';
 import { environment } from './../../environments/environment';
 
 @Injectable({
@@ -15,8 +16,12 @@ export class StandingsService {
 
   private driversEndpoint = 'current/driverStandings.json';
 
+  private resultsEndpoint = 'current/last/results.json';
+
+    teams: Observable<Constructor[]>;
+
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ })
   };
 
   getConstructors(): Observable<Constructor[]> {
@@ -35,5 +40,15 @@ export class StandingsService {
     )
   }
 
-  
+  getLatestRound(): Observable<Result> {
+      return this.http.get<Result>(
+          environment.API_STEM + this.resultsEndpoint,
+          this.httpOptions
+      )
+  }
+
+//   getPoints(): Observable<Constructor[]> {
+//     return this.http.get<Constructor[]>
+
+//   }
 }

@@ -1,0 +1,10 @@
+:host {
+    margin: 15px auto;
+}
+
+.mat-card {
+    background: #fff;
+    color: #424242;
+    float: left;
+    margin: 20px;
+}
