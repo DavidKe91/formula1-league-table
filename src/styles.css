@@ -1,9 +1,5 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-/* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f9fafe;}
 
 
 .toolbar {
@@ -17,9 +13,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 100%;;
 }
 
-table thead {
+/* table thead {
     background-color: #424242 !important;
-}
+} */
 
 .inner-table thead {
     background-color: #bababa !important;
@@ -37,6 +33,7 @@ table thead {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 16px;
+    text-align: left;
 }
 
 .mat-cell.cdk-cell {

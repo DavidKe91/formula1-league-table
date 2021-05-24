@@ -9,23 +9,24 @@
     display: inline-block;
     margin: 20px;
     vertical-align: top;
-    width: 220px;
 }
 
-.mat-card-avatar {
-    height: auto;
-    min-width: 34px;
-    max-width: 49px;
+.flag-icon-background {
+    height: 16px;
+    min-width: 23px;
     border-radius: 0px;
     box-shadow: 1px 1px 3px rgb(128 128 128 / 28%);
-    max-height: 25px;
+    max-height: 21px;
     flex-shrink: 0;
     -o-object-fit: cover;
     object-fit: cover;
     background-size: cover;
+    display: block;
+    float: left;
+    margin: 3px 10px 0px 0px;
 }
 
-.mat-card-header {
+/* .mat-card-header {
     border-bottom: 1px solid #e6e6e6;
 }
 
@@ -35,4 +36,4 @@
 
 .mat-card-subtitle {
     font-size: 13px;
-}
+} */

@@ -1,6 +1,5 @@
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { CountriesService } from './../../../services/countries.service';
+import { Component, OnInit } from '@angular/core';
 import { Driver } from '../../../model/models';
 import { StandingsService } from '../../../services/standings.service';
 
@@ -9,21 +8,15 @@ import { StandingsService } from '../../../services/standings.service';
   templateUrl: './drivers.component.html',
   styleUrls: ['./drivers.component.css']
 })
-export class DriversComponent implements OnInit, AfterViewInit {
-    displayedColumns: string[] = ['position', 'points', 'wins', 'name', 'nationality'];
+export class DriversComponent implements OnInit {
+    columns = ['Position', 'Points', 'Wins', 'Name', 'Nationality'];
     drivers: Driver[] = [];
-    dataSource = new MatTableDataSource(this.drivers);
+    dataSource = this.drivers;
 
-    @ViewChild(MatSort) sort: MatSort;
-
-    constructor(private standingsService: StandingsService) {}
+    constructor(private standingsService: StandingsService, private countriesService: CountriesService) {}
 
   ngOnInit(): void {
       this.getDrivers();
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
   }
 
   getDrivers(): void {
@@ -37,8 +30,24 @@ export class DriversComponent implements OnInit, AfterViewInit {
                 nationality: d['Driver'].nationality
               }
           });
+          this.getCountryCode(this.drivers);
+          this.setRaceImg(this.drivers);
           return this.drivers;
       })
   }
+
+    getCountryCode(data) {
+        data.forEach((element) => {
+            const countryCode = this.countriesService.getCountryCode(element.nationality);
+            Object.assign(element, {'countryCode': countryCode});
+        })
+    }
+
+    setRaceImg(data) {
+        data.forEach((element) => {
+            const raceImg = `../../../../../assets/${element.circuitId}-md.jpg`.toLowerCase();
+            Object.assign(element, {'raceImg': raceImg});
+        })
+    }
 
 }

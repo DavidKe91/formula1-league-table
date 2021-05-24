@@ -45,6 +45,7 @@ export interface NextRace {
 export class FamilyMember {
     name: string;
     points: number[];
+    position: number;
     teams: string[];
 }
   

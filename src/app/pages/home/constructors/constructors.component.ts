@@ -1,6 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 
 import { Constructor } from '../../../model/models';
 import { StandingsService } from '../../../services/standings.service';
@@ -13,22 +11,17 @@ import { StandingsService } from '../../../services/standings.service';
     styleUrls: ['constructors.component.css'],
     templateUrl: 'constructors.component.html',
   })
-  export class ConstructorsComponent implements OnInit, AfterViewInit {
-    displayedColumns: string[] = ['position', 'name', 'points', 'wins'];
+  export class ConstructorsComponent implements OnInit {
+    columns = ['Position', 'Name', 'Points', 'Wins'];
     constructors: Constructor[] = [];
-    dataSource = new MatTableDataSource(this.constructors);
+    dataSource = this.constructors;
   
-    @ViewChild('constructorsSort', { static: true }) sort: MatSort;
-
     constructor(private standingsService: StandingsService) {}
 
     ngOnInit() {
         this.getConstructors();
     }
 
-    ngAfterViewInit() {   
-        this.dataSource.sort = this.sort;
-    }
 
     getConstructors(): void {
         this.standingsService.getConstructors().subscribe((data: any[]) => {
