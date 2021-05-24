@@ -1,0 +1,16 @@
+<h2>Next Race</h2>
+<p><a [routerLink]="['/schedule', circuitId]">{{raceName}}</a>, Round {{nextRound}}</p>
+
+<h2>Family Standings</h2>
+<p>As of {{todaysDate}} after Round {{round}}<span></span></p>
+
+<f1-family class="card-container"></f1-family>
+
+<h2>Constructors Standings</h2>
+<p>As of {{todaysDate}} after Round {{round}}<span></span></p>
+
+<f1-constructors class="card-container"></f1-constructors>
+
+<h2>Drivers Standings</h2>
+
+<f1-drivers class="card-container"></f1-drivers>

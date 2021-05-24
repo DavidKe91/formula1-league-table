@@ -1,0 +1,14 @@
+:host {
+    width: 100%;
+}
+
+.trackHeader {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

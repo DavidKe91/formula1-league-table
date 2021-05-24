@@ -1,0 +1,19 @@
+<div class="schedule-list">
+    <mat-card class="schedule" *ngFor="let race of races">
+        <mat-card-header>
+            <div mat-card-avatar class="flag-icon-background flag-icon-{{race.countryCode}}">
+                <span></span>
+            </div>
+            <mat-card-title>{{race.country}}</mat-card-title>
+            <mat-card-subtitle>{{race.date | date}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card-subtitle>{{race.circuitName}}
+            </mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button><a [routerLink]="['/schedule', race.circuitId]">LEARN MORE</a></button>
+        </mat-card-actions>
+        <img mat-card-image [src]="race.raceImg" (error)="onImgError($event)" [alt]="race.raceName">
+    </mat-card>
+</div>

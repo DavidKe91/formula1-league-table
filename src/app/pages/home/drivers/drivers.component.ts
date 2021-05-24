@@ -1,8 +1,8 @@
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Driver } from '../model/models';
-import { StandingsService } from '../services/standings.service';
+import { Driver } from '../../../model/models';
+import { StandingsService } from '../../../services/standings.service';
 
 @Component({
   selector: 'f1-drivers',
@@ -36,8 +36,7 @@ export class DriversComponent implements OnInit, AfterViewInit {
                 name: d['Driver'].givenName + ' ' + d['Driver'].familyName,
                 nationality: d['Driver'].nationality
               }
-          })
-          console.log(this.drivers);
+          });
           return this.drivers;
       })
   }

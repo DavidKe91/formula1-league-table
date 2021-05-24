@@ -1,7 +1,7 @@
+import { NextRace } from './../model/models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map , filter} from 'rxjs/operators';
 import { Constructor, Driver, Result } from '../model/models';
 import { environment } from './../../environments/environment';
 
@@ -10,19 +10,18 @@ import { environment } from './../../environments/environment';
 })
 export class StandingsService {
 
-  constructor(private readonly http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
-  private constructorsEndpoint = 'current/constructorStandings.json';
-
-  private driversEndpoint = 'current/driverStandings.json';
-
-  private resultsEndpoint = 'current/last/results.json';
+    private constructorsEndpoint = 'current/constructorStandings.json';
+    private driversEndpoint = 'current/driverStandings.json';
+    private resultsEndpoint = 'current/last/results.json';
+    private nextRace = '2021/5.json';
 
     teams: Observable<Constructor[]>;
 
-  httpOptions = {
-    headers: new HttpHeaders({ })
-  };
+    httpOptions = {
+        headers: new HttpHeaders({ })
+    };
 
   getConstructors(): Observable<Constructor[]> {
     return this.http.get<Constructor[]>
@@ -47,8 +46,11 @@ export class StandingsService {
       )
   }
 
-//   getPoints(): Observable<Constructor[]> {
-//     return this.http.get<Constructor[]>
+  getNextRace(): Observable<NextRace> {
+      return this.http.get<NextRace>(
+          environment.API_STEM + this.nextRace,
+          this.httpOptions
+      )
+  }
 
-//   }
 }

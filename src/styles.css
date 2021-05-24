@@ -1,20 +1,42 @@
-@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
+.toolbar {
+    background-color: #ffffff !important;
+    color: #424242 !important;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
 .mat-table {
     background: #ffffff;
+    width: 100%;;
 }
 
 table thead {
-background-color: #424242 !important;
+    background-color: #424242 !important;
+}
+
+.inner-table thead {
+    background-color: #bababa !important;
+    color: #424242 !important;
+}
+
+.inner-table thead .mat-sort-header-button {
+    color: #424242;
 }
 
 .card-container {
     margin-bottom: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
 }
 
 .mat-cell.cdk-cell {

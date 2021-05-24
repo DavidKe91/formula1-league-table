@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="constructors" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="constructors" #constructorsSort="matSort" class="mat-elevation-z8" matSort>
 
     <!-- Position Column -->
     <ng-container matColumnDef="position">
