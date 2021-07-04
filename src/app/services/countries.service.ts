@@ -26,15 +26,16 @@ export class CountriesService {
         case 'France':
         case 'French':
             return 'fr';
-        case 'Austria':
+        case 'Australia':
         case 'Australian':
-            return 'at';
+            return 'au';
         case 'UK':
         case 'British':
             return 'gb';
         case 'Hungary':
             return 'hu';
         case 'Austria':
+        case 'Austrian':
             return 'at';
         case 'Monaco':
         case 'Monegasque':
@@ -73,6 +74,12 @@ export class CountriesService {
         case 'Finland':
         case 'Finnish':
             return 'fi';
+        case 'Switzerland':
+        case 'Swiss':
+            return 'ch';
+        case 'America':
+        case 'American':
+            return 'us';
         default:
             return '??';
       }

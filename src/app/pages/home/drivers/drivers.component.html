@@ -1,35 +1,4 @@
-<!-- <table mat-table [dataSource]="drivers" matSort class="mat-elevation-z8">
-
-    <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
-        <td mat-cell *matCellDef="let driver"> {{driver.position}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="points">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Points </th>
-        <td mat-cell *matCellDef="let driver"> {{driver.points}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="wins">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Wins </th>
-        <td mat-cell *matCellDef="let driver"> {{driver.wins}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let driver"> {{driver.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="nationality">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nationality </th>
-        <td mat-cell *matCellDef="let driver"> {{driver.nationality}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table> -->
-
-<table class="table table-striped table-hover">
+<!-- <table class="table table-striped table-hover">
     <thead>
         <tr>
             <th *ngFor="let column of columns"> {{column}} </th>
@@ -46,4 +15,41 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> -->
+
+<div class="d-flex justify-content-center mt-5" *ngIf="loading">
+    <div class="spinner-border text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div class="table" *ngIf="!loading">
+    <div class="row thead">
+        <div class="col-2 column-header">Position</div>
+        <div class="col-3 column-header">Name</div>
+        <div class="col-2 column-header">Points</div>
+        <div class="col-1 column-header">Wins</div>
+        <div class="col-4 column-header">Nationality</div>
+        <ng-container *ngFor="let driver of drivers">
+            <div class="table-header">
+                <div class="row header">
+                    <div class="col-2">
+                        <p class="table-position">{{driver.position}}</p>
+                    </div>
+                    <div class="col-3">
+                        <p>{{driver.name}}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>{{driver.points}}</p>
+                    </div>
+                    <div class="col-1">
+                        <p>{{driver.wins}}</p>
+                    </div>
+                    <div class="col-4">
+                        <div class="flag-icon-background flag-icon-{{driver.countryCode}}"></div>
+                        <p>{{driver.nationality}}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

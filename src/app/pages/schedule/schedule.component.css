@@ -1,0 +1,36 @@
+.schedule-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+}
+
+.schedule-list .schedule {
+    margin: 20px 0px;
+    transition: 1s ease-out;
+}
+
+.schedule-list .schedule:hover {
+    transform: translateY(-0.25rem);
+}
+
+.past img {
+    opacity: 0.5;
+    transition: .5s ease;
+}
+
+.past img:hover {
+    opacity: 1;
+}
+
+/* .mat-card-header {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.mat-card-content {
+    padding-top: 20px;
+}
+
+.mat-card-subtitle {
+    font-size: 13px;
+} */

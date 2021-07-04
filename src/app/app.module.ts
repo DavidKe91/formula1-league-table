@@ -7,9 +7,10 @@ import { ConstructorsComponent } from './pages/home/constructors/constructors.co
 import { HttpClientModule } from '@angular/common/http';
 import { DriversComponent } from './pages/home/drivers/drivers.component';
 import { FamilyComponent } from './pages/home/family/family.component';
-import { ScheduleComponent } from './pages/timetable/schedule/schedule.component';
+import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { HomePageComponent } from './pages/home/home-page/home-page.component';
-import { RaceComponent } from './pages/timetable/schedule/race/race.component';
+import { RaceComponent } from './pages/schedule/race/race.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RaceComponent } from './pages/timetable/schedule/race/race.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

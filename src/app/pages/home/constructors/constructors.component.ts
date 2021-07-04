@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
+import { CountriesService } from 'src/app/services/countries.service';
 import { Constructor } from '../../../model/models';
 import { StandingsService } from '../../../services/standings.service';
 
@@ -10,15 +12,23 @@ import { StandingsService } from '../../../services/standings.service';
     selector: 'f1-constructors',
     styleUrls: ['constructors.component.css'],
     templateUrl: 'constructors.component.html',
+    animations: [
+        trigger('detailExpand', [
+          state('collapsed', style({ height: '0px', minHeight: '0' })),
+          state('expanded', style({ height: '*' })),
+          transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+      ],
   })
   export class ConstructorsComponent implements OnInit {
-    columns = ['Position', 'Name', 'Points', 'Wins'];
     constructors: Constructor[] = [];
     dataSource = this.constructors;
+    loading: boolean;
   
-    constructor(private standingsService: StandingsService) {}
+    constructor(private standingsService: StandingsService, private countriesService: CountriesService) {}
 
     ngOnInit() {
+        this.loading = true;
         this.getConstructors();
     }
 
@@ -30,11 +40,20 @@ import { StandingsService } from '../../../services/standings.service';
                     position: c.position,
                     name: c['Constructor'].name,
                     points: c.points,
-                    wins: c.wins
+                    wins: c.wins,
+                    nationality: c['Constructor'].nationality
                 }
             })
-            console.log(this.constructors);
+            this.getCountryCode(this.constructors);
+            this.loading = false;
             return this.constructors;
+        })
+    }
+
+    getCountryCode(data) {
+        data.forEach((element) => {
+            const countryCode = this.countriesService.getCountryCode(element.nationality);
+            Object.assign(element, {'countryCode': countryCode});
         })
     }
   }

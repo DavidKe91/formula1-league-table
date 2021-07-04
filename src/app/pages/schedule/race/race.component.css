@@ -1,17 +1,20 @@
 :host {
     width: 100%;
+}
+
+.trackHeader {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
-}
-
-.f1-banner {
-    min-height: 90vh;
+.race-banner {
+    min-height: 70vh;
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -32,7 +35,7 @@
     color: #fff;
 }
 
-.f1-banner-content h6 {
+.race-banner-content h6 {
     font-size: 15px;
     font-weight: 400;
     margin-bottom: 20px;
@@ -43,16 +46,9 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 105%;
+    height: 70vh;
     z-index: -1;
     opacity: .1;
-    background-image: url('https://s3.eu-west-1.amazonaws.com/davidgkennedy.com/f1/assets/home-banner.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-@media (max-width: 769px) {
-    .parallax-effect {
-        background-image: url('https://s3.eu-west-1.amazonaws.com/davidgkennedy.com/f1/assets/home-banner-md.jpg');
-    }
-  }

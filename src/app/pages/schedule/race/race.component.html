@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="d-flex justify-content-center mt-5" *ngIf="loading">
+        <div class="spinner-border text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="completed; else error_content">
+    <section class="race-banner" *ngIf="!loading">
+        <div class="parallax-effect" [style.background-image]="'url(' + trackImg + ')'">
+        </div>
+        <div class="container">
+            <div class="race-banner-content">
+                <h2>{{circuitName}}</h2>
+                <h6>Round {{roundNumber}} / {{formattedDate}} / {{country}}</h6>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="m-5 text-center">Race Results</h2>
+        <table class="table table-striped table-hover mt-5">
+            <thead>
+                <tr>
+                    <th *ngFor="let column of columns"> {{column}} </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of driverPoints">
+                    <td>{{row.position}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.points}}</td>
+                    <td>
+                        <div class="flag-icon-background flag-icon-{{row.countryCode}}"></div>{{row.nationality}}
+                    </td>
+                    <td>{{row.constructorName}}</td>
+                    <td>{{row.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="m-5 text-center">Qualifying Results</h2>
+        <table class="table table-striped table-hover mt-5" *ngIf="!loading">
+            <thead>
+                <tr>
+                    <th *ngFor="let column of qualifyingColumns"> {{column}} </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of qualifyingResult">
+                    <td>{{row.position}}</td>
+                    <td>{{row.number}}</td>
+                    <td>{{row.name}}</td>
+                    <td>
+                        <div class="flag-icon-background flag-icon-{{row.countryCode}}"></div>{{row.nationality}}
+                    </td>
+                    <td>{{row.q1}}</td>
+                    <td>{{row.q2}}</td>
+                    <td>{{row.q3}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+
+<ng-template #error_content>
+    Race has not happened yet!
+</ng-template>

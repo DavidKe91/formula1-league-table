@@ -1,16 +1,32 @@
-<h2>Next Race</h2>
-<p><a [routerLink]="['/schedule', circuitId]">{{raceName}}</a>, Round {{nextRound}}</p>
+<section class="f1-banner">
+    <div class="parallax-effect">
+    </div>
+    <div class="container">
+        <div class="f1-banner-content">
+            <h6>Next Race</h6>
+            <h2>{{raceName}}</h2>
+            <h6>Round {{nextRound}} / {{formattedDate}} / {{circuitName}}</h6>
+            <a class="learn-more-btn" [routerLink]="['/schedule', nextRound]">
+                Learn More</a>
+        </div>
+    </div>
+</section>
 
-<h2>Family Standings</h2>
-<p>As of {{todaysDate}} after Round {{round}}<span></span></p>
+<div class="container">
+    <h2>Family Standings</h2>
+    <p>As of {{todaysDate}} after Round {{round}}<span></span></p>
 
-<f1-family class="card-container"></f1-family>
+    <f1-family class="card-container"></f1-family>
 
-<h2>Constructors Standings</h2>
-<p>As of {{todaysDate}} after Round {{round}}<span></span></p>
+    <h2>Constructors Standings</h2>
+    <p>As of {{todaysDate}} after Round {{round}}<span></span></p>
 
-<f1-constructors class="card-container"></f1-constructors>
+    <f1-constructors class="card-container"></f1-constructors>
 
-<h2>Drivers Standings</h2>
+    <h2>Drivers Standings</h2>
 
-<f1-drivers class="card-container"></f1-drivers>
+    <f1-drivers class="card-container"></f1-drivers>
+
+    <div class="content" role="main">
+
+    </div>

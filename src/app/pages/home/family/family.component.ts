@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 import { StandingsService } from '../../../services/standings.service';
 import { Constructor } from '../../../model/models';
@@ -19,6 +20,7 @@ import { FamilyMember } from '../../../model/models';
 })
 export class FamilyComponent implements OnInit {
 
+    faAngleUp = faAngleUp;
     constructors: Constructor[] = [];
     combinedStandings = [];
     dataSource = this.combinedStandings;
@@ -26,17 +28,20 @@ export class FamilyComponent implements OnInit {
     expandedElement: User | null;
     usersData: User[] = [];
     columns = ['Position', 'Name', 'Points'];
+    innerColumns = ['Position', 'Name', 'Points'];
     innerDisplayedColumns = ['teams', 'drivers'];
+    loading: boolean;
 
     familyData: FamilyMember[] = [
-        { name: 'David', points: [], position: 0, teams: ['Red Bull', 'Ferrari']},
-        { name: 'John', points: [], position: 0, teams: ['McLaren', 'Alpine F1 Team', 'AlphaTauri'] },
-        { name: 'Pat', points: [], position: 0, teams: ['Mercedes', 'Aston Martin'] }
+        { name: 'David', points: [], position: 0, teams: ['Red Bull', 'Ferrari'], teamResults: []},
+        { name: 'John', points: [], position: 0, teams: ['McLaren', 'Alpine F1 Team', 'AlphaTauri'], teamResults: []},
+        { name: 'Pat', points: [], position: 0, teams: ['Mercedes', 'Aston Martin'],  teamResults: [] }
     ]
 
     constructor(private standingsService: StandingsService) { }
 
     ngOnInit(): void {
+        this.loading = true;
         this.getFamilyPoints();
     }
 
@@ -55,27 +60,32 @@ export class FamilyComponent implements OnInit {
         this.combinedStandings.sort((a, b) => parseFloat(b.points) - parseFloat(a.points));
         this.familyData.forEach(member => this.calculatePosition(member));
     })
+    this.loading = false;
     return this.combinedStandings, this.constructors;
   }
 
   familyPointsCalc(familyMember): void {
     let i: number; let j: number; 
-    let temp = [];
+    let teams = [];
     let teamScores = [];
 
     let familyMemberScores = [];
+    let familyMemberTemp = [];
 
     for(i = 0; i < familyMember.teams.length; i++) {
-        temp.push(this.constructors.filter(items => items.name === familyMember.teams[i]));
+        teams.push(this.constructors.filter(items => items.name === familyMember.teams[i]));
     }
-    teamScores = temp;
+    teamScores = teams;
 
     for(j = 0; j < teamScores.length; j++) {
+        familyMemberTemp.push(teamScores[j][0]);
         familyMemberScores.push(teamScores[j][0].points);
     }
         familyMember.points = familyMemberScores.reduce((a,b) => parseInt(a) + parseInt(b), 0);
+        familyMember.teamResults = familyMemberTemp;
 
         this.combinedStandings.push(familyMember);
+        console.log(this.combinedStandings);
     }
 
     calculatePosition(familyMember) {

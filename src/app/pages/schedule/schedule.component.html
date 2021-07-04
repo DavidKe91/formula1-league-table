@@ -1,0 +1,33 @@
+<div class="schedule-list">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col-12 col-sm-6 col-md-4" *ngFor="let race of races">
+            <div class="card schedule" [class.past]="race.pastEvent">
+                <a [routerLink]="['/schedule', race.round]">
+                    <img class="img-fluid" [src]="race.raceImg" (error)="onImgError($event)" [alt]="race.raceName">
+                </a>
+                <div class="card-header">
+                    <div class="flag-icon-background flag-icon-{{race.countryCode}}">
+                    </div>
+                    <h5 class="card-title">{{race.country}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Round {{race.round}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{race.circuitName}}</h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{race.date}}<br>{{race.circuitName}}</p>
+                    <div *ngIf="race.pastEvent;else results_content">
+                        <a [routerLink]="['/schedule', race.round]">
+                            <button type="button" class="btn btn-outline-dark">View Results</button>
+                        </a>
+                    </div>
+                    <ng-template #results_content>
+                        <a [routerLink]="['/schedule', race.round]">
+                            <button type="button" class="btn btn-outline-dark">Learn More</button>
+                        </a>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content" role="main">

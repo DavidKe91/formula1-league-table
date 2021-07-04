@@ -1,8 +1,40 @@
-:host, table {
+:host {
     width: 100%;
   }
-  
-  th.mat-sort-header-sorted {
-    color: black;
-  }
+
+.table {
+    width: 100%;
+    margin: 0.1em 0 0px 0px;
+    background-color: transparent;
+}
+
+.table .column-header {
+    border-bottom: 1px solid #212529;
+    box-shadow: none;
+    font-weight: bold;
+    padding: 0.5em 1em;
+}
+
+.table .row.header {
+    border-bottom: 1px solid #DEDEDE;
+    cursor: pointer;
+}
+
+.table-position {
+    display: inline-block;
+}
+
+.table .column-header.inner-nested-cell {
+    background-color: #d6d6d6;
+    color: #212529;
+}
+
+.inner-nested-cell {
+    background-color: #efefef;
+    color: #212529;
+}
+
+.inner-nested-cell p {
+    padding: .5rem 0;
+}
   

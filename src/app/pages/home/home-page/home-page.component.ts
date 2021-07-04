@@ -2,6 +2,7 @@ import { NextRace } from './../../../model/models';
 import { Component, OnInit } from '@angular/core';
 
 import { StandingsService } from '../../../services/standings.service';
+import { TimeService } from './../../../services/time.service';
 import { Result } from '../../../model/models';
 
 @Component({
@@ -16,13 +17,16 @@ export class HomePageComponent implements OnInit {
     nextRound: number;
     nextRace: NextRace;
     raceName: string;
+    circuitName: string;
+    raceDate;
+    formattedDate: string;
+    raceTime: string;
     circuitId: string;
   
-    constructor(private standingsService: StandingsService) {}
+    constructor(private standingsService: StandingsService, private timeService: TimeService) {}
 
-  ngOnInit() {
-    this.getRoundNo();
-    this.getNextRace();
+    ngOnInit() {
+        this.getRoundNo();
   }
 
 
@@ -35,12 +39,13 @@ export class HomePageComponent implements OnInit {
     this.standingsService.getLatestRound().subscribe((data: any) => {
         this.round = data['MRData']['RaceTable']['Races'][0].round;
         this.nextRound = parseInt(this.round) + 1;
+        this.getNextRace(this.nextRound);
         return this.round, this.nextRound;
     })
   }
 
-  getNextRace(): void {
-      this.standingsService.getNextRace().subscribe((data:any) => {
+  getNextRace(round): void {
+      this.standingsService.getNextRace(round).subscribe((data:any) => {
           this.nextRace = data['MRData']['RaceTable']['Races'].map(r => {
               return {
                   raceName: r['raceName'],
@@ -54,9 +59,11 @@ export class HomePageComponent implements OnInit {
           });
 
           this.raceName = this.nextRace[0].raceName;
+          this.raceDate = this.nextRace[0].date;
+          this.circuitName = this.nextRace[0].circuitName;
+          this.formattedDate = this.timeService.formatDate(this.raceDate);
           this.circuitId = this.nextRace[0].circuitId;
-          return this.nextRace, this.raceName, this.circuitId;
+          return this.nextRace, this.raceName, this.circuitId, this.formattedDate, this.circuitName;
       })
   }
-
 }

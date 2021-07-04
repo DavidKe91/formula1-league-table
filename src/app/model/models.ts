@@ -6,7 +6,7 @@ export class Constructor {
     nationality: string;
 }
 
-export class Driver {
+export interface Driver {
     position: number;
     points: number;
     wins: number;
@@ -42,11 +42,24 @@ export interface NextRace {
     time: string;
 }
 
+export interface RaceResult {
+    round: string;
+    raceName: string;
+    circuitName: string;
+    circuitId: string;
+}
+
+export interface Schedule {
+    round: string;
+    circuitId: string;
+}
+
 export class FamilyMember {
     name: string;
     points: number[];
     position: number;
     teams: string[];
+    teamResults: string[];
 }
   
 export class ConstructorsResponse {

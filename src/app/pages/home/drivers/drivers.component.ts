@@ -1,21 +1,32 @@
-import { CountriesService } from './../../../services/countries.service';
 import { Component, OnInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
 import { Driver } from '../../../model/models';
+import { CountriesService } from './../../../services/countries.service';
 import { StandingsService } from '../../../services/standings.service';
 
 @Component({
   selector: 'f1-drivers',
   templateUrl: './drivers.component.html',
-  styleUrls: ['./drivers.component.css']
+  styleUrls: ['./drivers.component.css'],
+  animations: [
+      trigger('detailExpand', [
+        state('collapsed', style({ height: '0px', minHeight: '0' })),
+        state('expanded', style({ height: '*' })),
+        transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+      ]),
+    ],
 })
 export class DriversComponent implements OnInit {
-    columns = ['Position', 'Points', 'Wins', 'Name', 'Nationality'];
+    columns = ['Position', 'Name', 'Points', 'Wins', 'Nationality'];
     drivers: Driver[] = [];
     dataSource = this.drivers;
+    loading: boolean;
 
     constructor(private standingsService: StandingsService, private countriesService: CountriesService) {}
 
   ngOnInit(): void {
+    this.loading = true;
       this.getDrivers();
   }
 
@@ -32,6 +43,7 @@ export class DriversComponent implements OnInit {
           });
           this.getCountryCode(this.drivers);
           this.setRaceImg(this.drivers);
+          this.loading = false;
           return this.drivers;
       })
   }
@@ -45,7 +57,7 @@ export class DriversComponent implements OnInit {
 
     setRaceImg(data) {
         data.forEach((element) => {
-            const raceImg = `../../../../../assets/${element.circuitId}-md.jpg`.toLowerCase();
+            const raceImg = `https://s3-eu-west-1.amazonaws.com/davidgkennedy.com/f1/assets/${element.circuitId}-md.jpg`.toLowerCase();
             Object.assign(element, {'raceImg': raceImg});
         })
     }

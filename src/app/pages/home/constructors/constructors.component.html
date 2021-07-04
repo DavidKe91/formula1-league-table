@@ -1,39 +1,51 @@
-<!-- <table mat-table [dataSource]="constructors" #constructorsSort="matSort" class="mat-elevation-z8" matSort>
-
-    <ng-container matColumnDef="position">
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Team Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="points">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Points </th>
-        <td mat-cell *matCellDef="let element"> {{element.points}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="wins">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Wins </th>
-        <td mat-cell *matCellDef="let element"> {{element.wins}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table> -->
-
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th *ngFor="let column of columns"> {{column}} </th>
-        </tr>
-    </thead>
+<!-- <table class="table table-striped table-hover">
     <tbody>
         <tr *ngFor="let constructor of constructors">
             <td>{{constructor.position}}</td>
             <td>{{constructor.name}}</td>
             <td>{{constructor.points}}</td>
             <td>{{constructor.wins}}</td>
+            <td>
+                <div class="flag-icon-background flag-icon-{{constructor.countryCode}}"></div>
+                {{constructor.nationality}}
+            </td>
         </tr>
     </tbody>
-</table>
+</table> -->
+
+<div class="d-flex justify-content-center mt-5" *ngIf="loading">
+    <div class="spinner-border text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div class="table" *ngIf="!loading">
+    <div class="row thead">
+        <div class="col-2 column-header">Position</div>
+        <div class="col-3 column-header">Name</div>
+        <div class="col-2 column-header">Points</div>
+        <div class="col-1 column-header">Wins</div>
+        <div class="col-4 column-header">Nationality</div>
+        <ng-container *ngFor="let constructor of constructors">
+            <div class="table-header">
+                <div class="row header">
+                    <div class="col-2">
+                        <p class="table-position">{{constructor.position}}</p>
+                    </div>
+                    <div class="col-3">
+                        <p>{{constructor.name}}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>{{constructor.points}}</p>
+                    </div>
+                    <div class="col-1">
+                        <p>{{constructor.wins}}</p>
+                    </div>
+                    <div class="col-4">
+                        <div class="flag-icon-background flag-icon-{{constructor.countryCode}}"></div>
+                        <p>{{constructor.nationality}}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
